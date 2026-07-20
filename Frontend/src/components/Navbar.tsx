@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
+import { useAuth } from '../context/useAuth'
 import { Menu, X } from 'lucide-react'
 
 type NavbarTheme = 'dark' | 'light' | 'transparent'
@@ -9,6 +10,7 @@ const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false)
   const [currentTheme, setCurrentTheme] = useState<NavbarTheme>('transparent')
   const location = useLocation()
+  const { isAuthenticated, profile } = useAuth()
 
   // Check if we're on a page (not home)
   const isOnSubPage = location.pathname !== '/'
@@ -55,6 +57,7 @@ const Navbar = () => {
     { name: 'News', href: '/news' },
     { name: 'Advisory Board', href: '/advisory-board' },
     { name: 'Our Team', href: '/team' },
+    { name: 'Members', href: '/members' },
     // { name: 'Membership', href: '/membership' },
     { name: 'Contact', href: '/contact' },
   ]
@@ -139,10 +142,10 @@ const Navbar = () => {
               </Link>
             ))}
             <Link
-              to="/login"
+              to={isAuthenticated ? "/profile" : "/login"}
               className="ml-4 px-6 py-2 rounded-full font-semibold text-white bg-primary-600 hover:bg-primary-700 transition-all duration-300 hover:scale-105 shadow-md"
             >
-              Login
+              {isAuthenticated ? (profile?.full_name?.split(' ')[0] || 'Profile') : 'Login'}
             </Link>
           </div>
 
@@ -176,11 +179,11 @@ const Navbar = () => {
               </Link>
             ))}
             <Link
-              to="/login"
+              to={isAuthenticated ? "/profile" : "/login"}
               className="block text-center mt-4 px-6 py-3 rounded-full font-semibold text-white bg-primary-600 hover:bg-primary-700"
               onClick={() => setIsOpen(false)}
             >
-              Login
+              {isAuthenticated ? 'Profile' : 'Login'}
             </Link>
           </div>
         </div>

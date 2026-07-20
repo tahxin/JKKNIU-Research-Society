@@ -13,6 +13,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('events.urls')),
     path('api/', include('forms_builder.urls')),
+    path('api/', include('accounts.urls')),
 ]
 
 # Serve media files during development

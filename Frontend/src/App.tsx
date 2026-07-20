@@ -14,6 +14,8 @@ import Team from './pages/Team'
 import Membership from './pages/Membership'
 import Contact from './pages/Contact'
 import Login from './pages/Login'
+import Profile from './pages/Profile'
+import Members from './pages/Members'
 import Recruitment from './pages/Recruitment'
 import YoungResearcherForm from './components/YoungResearcherForm'
 
@@ -36,6 +38,8 @@ function App() {
           <Route path="/membership" element={<Membership />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/members" element={<Members />} />
           <Route path="/recruitment" element={<Recruitment />} />
           <Route path="/events/recruitment" element={<Recruitment />} />
           <Route path="/events/recruitemets/special" element={
